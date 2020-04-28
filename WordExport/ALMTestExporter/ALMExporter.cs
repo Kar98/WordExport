@@ -24,11 +24,13 @@ namespace WordExport.ALMTestExporter
             var steps = exp.CreateALMTestStep(test.TestSteps);
             StringBuilder sb = new StringBuilder();
 
+            // Append the first test step then ...
             sb.Append("- "+steps[0].Item1);
             if (!string.IsNullOrEmpty(steps[0].Item2))
             {
                 sb.Append(steps[0].Item2);
             }
+            // ... go into the main loop
             for (int i = 1;i < steps.Count; i++)
             {
                 sb.Append("\n- " + steps[i].Item1);
@@ -52,7 +54,7 @@ namespace WordExport.ALMTestExporter
             StringBuilder sb = new StringBuilder();
             foreach (var s in splits)
             {
-                sb.Append($"<p>{s.Replace("\t", "&nbsp;")}</p>\n"); // Octane doens't have \t chars and so we replace them with a space
+                sb.Append($"<p>{s.Replace("\t", "&nbsp;")}</p>\n"); // Octane doens't have \t chars and so I replace them with a space
             }
             desc = $"<html><body>\n{sb}</body></html>";
             return desc;

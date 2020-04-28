@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using ALMOctaneExport;
 using Microsoft.Office.Interop.Word;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WordExport;
 using WordExport.ALMTestExporter;
+using WordExport.TestcaseObjects;
 
 namespace WordExportUnittests
 {
@@ -16,7 +18,7 @@ namespace WordExportUnittests
         const string file2 = @"TC_01 - PRF - Status Management - to migrate.docx";
         const string test = @"test.docx";
         const string root = @"C:\Users\Kar98\Documents\Work\ALMOctane\";
-        const string filepath = @"C:\Users\Kar98\Documents\Work\ALMOctane\"+ file2;
+        const string filepath = @"C:\Users\Kar98\Documents\Work\ALMOctane\"+ test;
         static Application ap;
         static WordParser parser;
 
@@ -74,16 +76,16 @@ namespace WordExportUnittests
         }
 
         [TestMethod]
-        public void Expected()
+        public void TestExpectedParsing()
         {
-            Console.WriteLine("File : " + filepath);
-            var testcase = parser.Parse(filepath,1);
-            Assert.AreEqual(testcase.TestSteps.Count, 2);
-            Assert.AreEqual(testcase.TestSteps[0].Expected.Count, 1);
+            var file = Path.GetFullPath(@"Files\test.docx");
+            var testcase = parser.Parse(file, 1);
+            Assert.AreEqual(testcase.TestSteps.Count, 4);
+            Assert.AreEqual(testcase.TestSteps[0].Expected.Count, 3);
         }
 
         [TestMethod]
-        public void TestHeightCalculations()
+        public void OutputHeightCalculations()
         {
             Console.WriteLine("File : " + filepath);
             var testcase = parser.Parse(filepath, 1);
@@ -99,8 +101,28 @@ namespace WordExportUnittests
             Console.WriteLine(total);
         }
 
-        
+        [TestMethod]
+        public void TestStepToExpectedMapping()
+        {
+            var file = Path.GetFullPath(@"Files\test.docx");
+            var testcase = parser.Parse(file, 1);
+            Assert.IsTrue(testcase.TestSteps[0].Sequences.First(a => a.Key.Text.Contains("PRF with SON")).Value.Count > 0);
+            Assert.IsTrue(testcase.TestSteps[0].Sequences.First(a => a.Key.Text.Contains("After indent")).Value.Count > 0);
+            Assert.IsTrue(testcase.TestSteps[0].Sequences.First(a => a.Key.Text.Contains("Extra indent2")).Value.Count > 0);
+            Assert.IsTrue(testcase.TestSteps[0].Sequences.First(a => a.Key.Text.Contains("Normal indent2")).Value.Count == 0);
+        }
 
+        [TestMethod]
+        public void TestHeightGeneration()
+        {
+            var file = Path.GetFullPath(@"Files\test.docx");
+            var testcase = parser.Parse(file, 1);
+            
+            var list = testcase.TestSteps[0].Sequences.ToList();
+            var count = list.Count;
+            Assert.IsTrue(list[count-2].Key.ParagraphHeight == 1); // Second last
+            Assert.IsTrue(list[count - 1].Key.ParagraphHeight == 2); //  last
+        }
 
 
     }
