@@ -8,10 +8,10 @@ using WordExport.TestcaseObjects;
 
 namespace WordExport.ALMTestExporter
 {
-    public class ALMExporter
+    public class ALMConvertor
     {
 
-        public ALMExporter() { }
+        public ALMConvertor() { }
 
         /// <summary>
         /// Converts the testcase to a ALM Octane 'script' parameter for a API upload

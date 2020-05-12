@@ -67,6 +67,10 @@
       <Project>{78A76485-6421-47C3-95F3-995510C8D06E}</Project>
       <Name>ALMOctaneExport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestRailExport\TestRailExport.csproj">
+      <Project>{F3569357-6AE1-47C9-9B0F-DCF95EAE6E1E}</Project>
+      <Name>TestRailExport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WordExport\WordExport.csproj">
       <Project>{37bdbe03-3784-4902-b77a-d7d6928afb9c}</Project>
       <Name>WordExport</Name>

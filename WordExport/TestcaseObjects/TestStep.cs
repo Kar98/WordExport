@@ -10,6 +10,7 @@ namespace WordExport.TestcaseObjects
 {
     /// <summary>
     /// Contains: Test step, Expected result,Pass/Fail, Comments.
+    /// Note that this is a TestStep from the word doc and not what a true test step would be. A TestSequence is a proper test step.
     /// </summary>
     public class TestStep
     {
@@ -55,8 +56,9 @@ namespace WordExport.TestcaseObjects
         {
             /*
              * Load in the COM elements from the Doc
-             * Arrange the Description into a Step
-             * Assuming a row that does not have a expected result, and so it will be a prequisite step
+             * Determine the test step
+             * Determine the expected results
+             * If it's a prerequisite step, then it mark it accordingly.
              */
             StepNumber = stepNum;
             COMDescription = new List<WordParagraph>();
@@ -186,6 +188,12 @@ namespace WordExport.TestcaseObjects
                     throw new WordParserException("Unknown case in SetStepDescription");
                 }
 
+            }
+            // After the loop is done, check the last result and see if it was added.
+            if(sb.Length > 0)
+            {
+                Expected.Add(sb.ToString());
+                sb.Clear();
             }
         }
 

@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordExportUnittests", "Word
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALMOctaneExport", "ALMOctaneExport\ALMOctaneExport.csproj", "{78A76485-6421-47C3-95F3-995510C8D06E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRailExport", "TestRailExport\TestRailExport.csproj", "{F3569357-6AE1-47C9-9B0F-DCF95EAE6E1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gurock.TestRail", "..\testrail-api\dotnet\Gurock.TestRail.csproj", "{2162E7EE-ED4C-4C41-8E21-66976AB11D1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{78A76485-6421-47C3-95F3-995510C8D06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A76485-6421-47C3-95F3-995510C8D06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A76485-6421-47C3-95F3-995510C8D06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3569357-6AE1-47C9-9B0F-DCF95EAE6E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3569357-6AE1-47C9-9B0F-DCF95EAE6E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3569357-6AE1-47C9-9B0F-DCF95EAE6E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3569357-6AE1-47C9-9B0F-DCF95EAE6E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2162E7EE-ED4C-4C41-8E21-66976AB11D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2162E7EE-ED4C-4C41-8E21-66976AB11D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2162E7EE-ED4C-4C41-8E21-66976AB11D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2162E7EE-ED4C-4C41-8E21-66976AB11D1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

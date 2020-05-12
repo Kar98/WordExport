@@ -74,7 +74,7 @@ namespace WordExport.TestcaseObjects
                     }
                     else if (table.Cell(i, 2).Range.Text.TrimJunk() == "Description" || table.Cell(i, 3).Range.Text.TrimJunk() == "Expected Result")
                     {
-                        // Skip
+                        // Skip. Header line for the table
                         //Globals.Log("Header found. Skipping " + currentStep);
                     }
                     // If a proper column, then do the standard logic.
@@ -145,6 +145,13 @@ namespace WordExport.TestcaseObjects
             }
             Description = sb.ToString();
         }
+
+        public List<Tuple<string, string>> GenerateFormattedTestSteps()
+        {
+            //TODO: copy the ExcelExporter.CreateALMStep and put it here, then change all the references to here. Other objects need it.
+            return null;
+        }
+
 
         public void PrintStats()
         {

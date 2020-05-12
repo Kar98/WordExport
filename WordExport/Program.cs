@@ -5,6 +5,7 @@ using MicroFocus.Adm.Octane.Api.Core.Entities;
 using MicroFocus.Adm.Octane.Api.Core.Services;
 using MicroFocus.Adm.Octane.Api.Core.Services.RequestContext;
 using Microsoft.Office.Interop.Word;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TestRailExport;
 using WordExport.ALMTestExporter;
 using WordExport.ExcelExporter;
 using WordExport.TestcaseObjects;
@@ -30,10 +32,25 @@ namespace WordExport
             Globals.Log("Start");
 
             MainProgram();
+            //Test();
 
             Globals.Log("Done!");
             Console.WriteLine("Press enter to exit");
             Console.Read();
+        }
+
+        private static void Test()
+        {
+            TRExporter tre = new TRExporter("https://environment.testrail.net", "***", "***");
+            var jsonobj = new TestrailJSON() { Title = "jsnobj title 2", TemplateId = 2, TypeId = 6, PriorityId = 1, 
+                CustomTestscenario = "description new as obj", CustomStepsSeparated = new CustomStepsSeparated[] 
+                { new CustomStepsSeparated() { Content = "step1", Expected = "exp1" },
+                new CustomStepsSeparated() { Content = "step2", Expected = "exp2" }} };
+
+            var json = JsonConvert.SerializeObject(jsonobj);
+            File.WriteAllText("json.txt", json);
+            var id = tre.CreateTest("2429", jsonobj);
+            Console.WriteLine(id);
         }
 
         private static void MainProgram()
@@ -100,7 +117,7 @@ namespace WordExport
                 }
             }   
 
-            ALMExporter export = new ALMExporter();
+            ALMConvertor export = new ALMConvertor();
             ALMOctaneConnection con = new ALMOctaneConnection(
                 ConfigurationManager.AppSettings["webAppUrl"],
                 ConfigurationManager.AppSettings["userName"],
